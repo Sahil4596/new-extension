@@ -1,0 +1,96 @@
+{
+  "name": "change-impact-guard",
+  "displayName": "Change Impact Guard",
+  "description": "Analyzes code changes and warns about potential risks before commit or PR.",
+  "version": "0.0.1",
+  "publisher": "sahiljhajharia",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sahil4596/new-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sahil4596/new-extension/issues"
+  },
+  "homepage": "https://github.com/Sahil4596/new-extension#readme",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "change-impact-guard",
+          "title": "Impact Guard",
+          "icon": "$(shield)"
+        }
+      ]
+    },
+    "views": {
+      "change-impact-guard": [
+        {
+          "id": "changeImpactReport",
+          "name": "Change Impact Report",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "change-impact-guard.analyzeImpact",
+        "title": "Analyze Change Impact"
+      },
+      {
+        "command": "change-impact-guard.configureCriticalPaths",
+        "title": "Configure Critical Paths"
+      }
+    ],
+    "configuration": {
+      "title": "Change Impact Guard",
+      "properties": {
+        "changeImpactGuard.criticalPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "auth",
+            "payment",
+            "checkout",
+            "db"
+          ],
+          "description": "Folders considered critical for risk scoring."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "echo 'No linting yet'",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "glob": "^13.0.6",
+    "simple-git": "^3.32.2",
+    "ts-morph": "^27.0.2"
+  },
+  "devDependencies": {
+    "@types/glob": "^9.0.0",
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.75.0",
+    "@vscode/vsce": "^2.15.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}

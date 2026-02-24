@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "clean-test-env",
+            "type": "shell",
+            "command": "rm -rf .vscode-test",
+            "problemMatcher": []
+        },
+        {
+            "label": "compile-with-clean",
+            "dependsOn": [
+                "clean-test-env",
+                "npm: compile"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        }
+    ]
+}
